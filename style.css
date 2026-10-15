@@ -112,7 +112,7 @@ h3 { letter-spacing: -.02em; line-height: 1.2; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative; overflow: hidden; display: grid; align-items: end; color: #fff; background: #0b120e;
-  min-height: 100vh; min-height: 100svh; padding: 130px 0 clamp(110px, 15vh, 150px);
+  min-height: 100vh; min-height: 100svh; padding: 100px 0 clamp(76px, 10vh, 104px);
 }
 .hero-media { position: absolute; inset: 0; background: radial-gradient(70% 70% at 80% 30%, #2c4731, #0b120e); }
 .hv-bg { width: 100%; height: 100%; object-fit: cover; filter: blur(36px) brightness(.55) saturate(1.25); transform: scale(1.3); }
@@ -123,7 +123,7 @@ h3 { letter-spacing: -.02em; line-height: 1.2; }
     radial-gradient(60% 70% at 15% 85%, rgba(8, 14, 10, .65), transparent 70%);
 }
 .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.1fr .9fr; gap: 2rem; align-items: end; }
-.hero h1 { color: #fff; font-size: clamp(2.7rem, 1rem + 5.2vw, 5.4rem); letter-spacing: -.055em; line-height: .97; margin-bottom: 1.6rem; }
+.hero h1 { color: #fff; font-size: clamp(2.4rem, min(1rem + 4.8vw, 8.6vh), 5.4rem); letter-spacing: -.055em; line-height: .97; margin-bottom: 1.6rem; }
 .hero .eyebrow { color: rgba(255, 255, 255, .72); }
 .lead { max-width: 480px; margin-bottom: 2.2rem; font-size: clamp(1.05rem, 1rem + .3vw, 1.25rem); color: var(--text); }
 .hero .lead { color: rgba(255, 255, 255, .82); }
@@ -132,7 +132,7 @@ h3 { letter-spacing: -.02em; line-height: 1.2; }
 .hero .link-arrow i { background: rgba(255, 255, 255, .12); border-color: rgba(255, 255, 255, .38); }
 .hero .link-arrow:hover i { background: #fff; color: var(--ink); }
 .hero-frame {
-  justify-self: end; position: relative; height: min(70vh, 620px); aspect-ratio: 464 / 832; border-radius: 28px; overflow: hidden;
+  justify-self: end; position: relative; height: min(58vh, 600px); aspect-ratio: 464 / 832; border-radius: 28px; overflow: hidden;
   border: 1px solid rgba(255, 255, 255, .28); background: #0b120e; box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .7);
 }
 .hv-main { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -403,6 +403,29 @@ h3 { letter-spacing: -.02em; line-height: 1.2; }
 .lb-close { top: 18px; right: 18px; font-size: 1.2rem; }
 .lb-prev { left: 18px; top: 50%; }
 .lb-next { right: 18px; top: 50%; }
+
+/* ---------- Pages (une seule affichée à la fois) ---------- */
+.js .view { display: none; }
+.js .view.is-active { display: block; animation: viewIn .7s var(--ease) both; }
+.view:not([data-view="accueil"]) { min-height: calc(100svh - 140px); }
+.is-home .footer { display: none; }
+.view:focus { outline: none; }
+@keyframes viewIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* Rideau de transition entre deux pages */
+.curtain { position: fixed; inset: 0; z-index: 100; display: flex; overflow: hidden; pointer-events: all; }
+.curtain[hidden] { display: none; }
+.curtain i { flex: 1 0 0; margin-right: -1px; transform: translateY(100%); will-change: transform; }
+.curtain i:nth-child(1) { background: var(--accent); }
+.curtain i:nth-child(2) { background: var(--green); }
+.curtain i:nth-child(3) { background: var(--night); }
+.curtain i:nth-child(4) { background: var(--green-dark); }
+.curtain i:nth-child(5) { background: var(--accent-dark); }
+.curtain-label { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: .6rem; text-align: center; color: #fff; opacity: 0; pointer-events: none; padding: 0 1rem; }
+.curtain-label small { font-size: .72rem; letter-spacing: .32em; text-transform: uppercase; opacity: .8; }
+.curtain-label b { font-size: clamp(2.2rem, 1rem + 6vw, 5.2rem); font-weight: 700; letter-spacing: -.05em; line-height: 1; }
+
+@media (prefers-reduced-motion: reduce) { .js .view.is-active { animation: none; } .curtain { display: none !important; } }
 
 /* ---------- Apparitions au défilement ---------- */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }

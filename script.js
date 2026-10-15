@@ -13,17 +13,19 @@ menu.querySelectorAll('a').forEach(a =>
   })
 );
 
-// Apparition douce des blocs au défilement
-const reveals = document.querySelectorAll('.reveal');
+// Apparition douce des blocs : rejouée à chaque fois qu'une page s'affiche (voir armReveals)
+let io = null;
 if ('IntersectionObserver' in window) {
-  const io = new IntersectionObserver((entries) => {
+  io = new IntersectionObserver((entries) => {
     entries.forEach(en => {
       if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
     });
   }, { threshold: 0.12 });
-  reveals.forEach(el => io.observe(el));
-} else {
-  reveals.forEach(el => el.classList.add('visible'));
+}
+function armReveals(scope) {
+  const els = scope.querySelectorAll('.reveal');
+  if (!io) { els.forEach(el => el.classList.add('visible')); return; }
+  els.forEach(el => { el.classList.remove('visible'); io.observe(el); });
 }
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -36,24 +38,105 @@ function onScroll() {
   const max = document.documentElement.scrollHeight - innerHeight;
   progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
   header.classList.toggle('scrolled', scrollY > 20);
-  header.classList.toggle('over-hero', scrollY < document.getElementById('accueil').offsetHeight - 80);
-  toTop.hidden = scrollY < 600;
+  const home = document.body.classList.contains('is-home');
+  header.classList.toggle('over-hero', home);
+  toTop.hidden = home || scrollY < 600;
 }
 addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
 
-// Lien actif dans le menu selon la section visible
-const links = [...document.querySelectorAll('.menu a[href^="#"]:not(.btn)')];
-if ('IntersectionObserver' in window) {
-  const spy = new IntersectionObserver((entries) => {
-    entries.forEach(en => {
-      if (en.isIntersecting) {
-        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-  links.forEach(a => { const s = document.querySelector(a.getAttribute('href')); if (s) spy.observe(s); });
+// ---------- Navigation par « pages » avec transition en rideau ----------
+// Une seule .view est visible à la fois. Un clic sur un lien #xxx ouvre la page qui contient
+// l'élément #xxx (ex. #galerie, #devis, #estimation) et y fait défiler si besoin.
+const views = [...document.querySelectorAll('.view')];
+const curtain = document.getElementById('curtain');
+const curtainLabel = document.getElementById('curtainLabel');
+const curtainCols = [...curtain.querySelectorAll('i')];
+const curtainText = curtain.querySelector('.curtain-label');
+const menuLinks = [...document.querySelectorAll('.menu a[href^="#"]:not(.btn)')];
+const DEFAULT_TITLE = document.title;
+const viewOf = id => { const el = id && document.getElementById(id); return el ? el.closest('.view') : null; };
+const wait = ms => new Promise(r => setTimeout(r, ms));
+let currentView = views[0];
+let busy = false;
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+function jumpTo(id, smooth) {
+  const view = currentView, target = id && document.getElementById(id);
+  const behavior = smooth && !reduceMotion ? 'smooth' : 'instant';
+  if (target && view.contains(target) && target !== view.firstElementChild) {
+    scrollTo({ top: target.getBoundingClientRect().top + scrollY - 76, behavior });
+  } else {
+    scrollTo({ top: 0, behavior });
+  }
+}
+
+function setView(view, id) {
+  views.forEach(v => v.classList.toggle('is-active', v === view));
+  currentView = view;
+  const name = view.dataset.view;
+  document.body.classList.toggle('is-home', name === 'accueil');
+  menuLinks.forEach(a => a.classList.toggle('active', viewOf(a.getAttribute('href').slice(1)) === view));
+  document.title = name === 'accueil' ? DEFAULT_TITLE : `${view.dataset.title} – PinouMiam`;
+  armReveals(view);
+  jumpTo(id, false);
+  onScroll();
+  view.tabIndex = -1;
+  view.focus({ preventScroll: true });
+}
+
+async function runCurtain(view, id) {
+  const EASE = 'cubic-bezier(.76,0,.24,1)', DUR = 560, STEP = 70;
+  curtainLabel.textContent = view.dataset.title;
+  curtain.hidden = false;
+  const cover = curtainCols.map((c, i) => c.animate(
+    [{ transform: 'translateY(100%)' }, { transform: 'translateY(0)' }],
+    { duration: DUR, delay: i * STEP, easing: EASE, fill: 'forwards' }));
+  curtainText.animate(
+    [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }],
+    { duration: 420, delay: 280, easing: 'ease-out', fill: 'forwards' });
+  await Promise.all(cover.map(a => a.finished));
+  setView(view, id);
+  await wait(320);
+  const open = curtainCols.map((c, i) => c.animate(
+    [{ transform: 'translateY(0)' }, { transform: 'translateY(-100%)' }],
+    { duration: DUR, delay: i * STEP, easing: EASE, fill: 'forwards' }));
+  curtainText.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, fill: 'forwards' });
+  await Promise.all(open.map(a => a.finished));
+  [...curtainCols, curtainText].forEach(el => el.getAnimations().forEach(a => a.cancel()));
+  curtain.hidden = true;
+}
+
+async function go(id, push = true) {
+  if (busy) return;
+  const view = viewOf(id) || views[0];
+  if (push && location.hash !== '#' + id) history.pushState({ id }, '', '#' + id);
+  if (view === currentView) { jumpTo(id, true); return; }
+  busy = true;
+  try {
+    if (reduceMotion || !curtain.animate) setView(view, id);
+    else await runCurtain(view, id);
+  } finally {
+    busy = false;
+  }
+}
+
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute('href').slice(1);
+  if (!id) return;
+  e.preventDefault();
+  menu.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  go(id);
+});
+addEventListener('popstate', () => go(location.hash.slice(1) || 'accueil', false));
+// affichage initial (lien direct, ex. …/#galerie)
+{
+  const startId = location.hash.slice(1);
+  setView(viewOf(startId) || views[0], startId);
 }
 
 // Mots qui défilent dans le hero
@@ -129,7 +212,7 @@ if (formules.length && estChoices) {
     const form = document.getElementById('devis-form');
     form.invites.value = n;
     form.message.value = `Bonjour, je souhaite un devis pour la formule ${f.name} pour ${n} personnes (estimation : ${euro(f.price * n)}).`;
-    document.getElementById('devis').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    go('devis');
   });
 }
 
