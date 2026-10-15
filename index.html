@@ -7,6 +7,9 @@
   <meta name="description" content="PinouMiam, traiteur gourmand : du fait maison avec amour pour vos mariages, anniversaires et repas d'entreprise. Commandes et devis sur Instagram.">
   <meta name="theme-color" content="#5f7a62">
   <link rel="icon" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -19,10 +22,11 @@
     <a href="#accueil" class="logo">Pinou<span>Miam</span></a>
     <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">☰</button>
     <nav class="menu" id="menu">
-      <a href="#presentation">Présentation</a>
+      <a href="#prestations">Prestations</a>
       <a href="#tarifs">Menus &amp; Tarifs</a>
       <a href="#galerie">Galerie</a>
-      <a href="#contact" class="btn btn-small">Devis gratuit</a>
+      <a href="#contact">Contact</a>
+      <a href="#devis" class="btn btn-small">Demander un devis <span class="arr">→</span></a>
     </nav>
   </div>
 </header>
@@ -33,11 +37,11 @@
     <div class="container hero-grid">
       <div class="hero-text">
         <p class="eyebrow">Traiteur gourmand · Cuisine maison</p>
-        <h1>Du fait maison, <em>avec amour</em>, pour vos plus beaux moments</h1>
+        <h1>Du fait maison, <span class="grad">avec amour</span>, pour vos plus beaux moments.</h1>
         <p class="lead">Pour votre <span class="rotator" data-words="mariage,anniversaire,baptême,repas d'entreprise,fête de famille">mariage</span> : du goût, du partage et du plaisir, préparés pour vous.</p>
         <div class="hero-actions">
-          <a href="#tarifs" class="btn">Voir les tarifs</a>
-          <a href="#contact" class="btn btn-outline">Demander un devis</a>
+          <a href="#devis" class="btn">Demander un devis <span class="arr">→</span></a>
+          <a href="#tarifs" class="link-arrow">Découvrir nos formules <i>→</i></a>
         </div>
       </div>
       <div class="hero-art" id="heroArt" aria-hidden="true">
@@ -51,60 +55,95 @@
         <span class="float-ico f2" style="--d:44">🍓</span>
         <span class="float-ico f3" style="--d:60">🥂</span>
         <span class="float-ico f4" style="--d:40">🧁</span>
+        <span class="art-badge"><b></b>Cuisine maison · @pinou.miam</span>
       </div>
     </div>
   </section>
 
-  <!-- ATOUTS -->
-  <section class="perks">
-    <div class="container perks-grid">
-      <div class="perk"><span class="perk-ico">🍳</span><strong>100 % fait maison</strong><small>Rien d'industriel</small></div>
-      <div class="perk"><span class="perk-ico">🥬</span><strong>Produits frais</strong><small>De saison, bien choisis</small></div>
-      <div class="perk"><span class="perk-ico">🎯</span><strong>Sur mesure</strong><small>Selon vos goûts et budget</small></div>
-      <div class="perk"><span class="perk-ico">⚡</span><strong>Devis rapide</strong><small>Réponse sous 24 h</small></div>
+  <!-- PRESTATIONS -->
+  <section class="section" id="prestations">
+    <div class="container">
+      <div class="head-split">
+        <div>
+          <p class="eyebrow">Nos prestations</p>
+          <h2>Une cuisine pensée <span class="soft">pour vos moments.</span></h2>
+        </div>
+        <p class="head-text">De l'apéritif au gâteau : quatre façons de régaler vos invités, préparées par la même cuisinière.</p>
+      </div>
+      <div class="svc-grid">
+        <a href="#tarifs" class="svc reveal">
+          <div class="svc-top"><span class="ico">💍</span><span class="num">01</span></div>
+          <h3>Mariages &amp; réceptions</h3>
+          <p>Des menus sur mesure pour votre grand jour.</p>
+          <span class="svc-foot">Découvrir <i>→</i></span>
+        </a>
+        <a href="#tarifs" class="svc reveal">
+          <div class="svc-top"><span class="ico">🏢</span><span class="num">02</span></div>
+          <h3>Repas d'entreprise</h3>
+          <p>Plateaux, buffets et cocktails pour vos équipes.</p>
+          <span class="svc-foot">Découvrir <i>→</i></span>
+        </a>
+        <a href="#tarifs" class="svc reveal">
+          <div class="svc-top"><span class="ico">🥂</span><span class="num">03</span></div>
+          <h3>Apéritifs &amp; buffets</h3>
+          <p>Verrines, pièces salées et sucrées, faites maison.</p>
+          <span class="svc-foot">Découvrir <i>→</i></span>
+        </a>
+        <a href="#galerie" class="svc reveal">
+          <div class="svc-top"><span class="ico">🧁</span><span class="num">04</span></div>
+          <h3>Pâtisseries &amp; desserts</h3>
+          <p>Gâteaux, bouchées gourmandes et douceurs.</p>
+          <span class="svc-foot">Découvrir <i>→</i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROCHE (bandeau sombre) -->
+  <section class="section tight">
+    <div class="container">
+      <div class="dark-panel reveal">
+        <p class="eyebrow">Notre approche</p>
+        <h2>De votre envie <span class="glow">à votre table.</span></h2>
+        <ol class="timeline">
+          <li><span class="dot"></span><span class="big">01</span><h3>Comprendre</h3><p>Votre événement, vos envies, vos invités.</p></li>
+          <li><span class="dot"></span><span class="big">02</span><h3>Proposer</h3><p>Un menu et un devis clairs, adaptés à vous.</p></li>
+          <li><span class="dot"></span><span class="big">03</span><h3>Cuisiner</h3><p>Retrait ou livraison le jour J, vous n'avez plus qu'à vous régaler.</p></li>
+        </ol>
+      </div>
     </div>
   </section>
 
   <!-- PRÉSENTATION -->
   <section class="section" id="presentation">
-    <div class="container two-col">
+    <div class="container split">
       <div class="reveal">
-        <p class="kicker">Notre histoire</p>
-        <h2>PinouMiam, c'est quoi ?</h2>
-        <p>Une cuisine généreuse, préparée avec amour et sans chichis. Mon objectif : que vos invités se souviennent autant de la convivialité que des plats.</p>
-        <p>Chaque menu est adapté à vos envies, votre budget et vos contraintes alimentaires (végétarien, sans gluten, halal…).</p>
-        <ul class="checks">
-          <li>Produits frais et de saison</li>
-          <li>Menus personnalisés</li>
-          <li>Livraison et service possibles</li>
-          <li>Devis gratuit sous 24 h</li>
-        </ul>
+        <p class="eyebrow">Notre histoire</p>
+        <h2>PinouMiam, <span class="soft">c'est quoi ?</span></h2>
+        <p class="body-text">Une cuisine généreuse, préparée avec amour et sans chichis. Mon objectif : que vos invités se souviennent autant de la convivialité que des plats.</p>
+        <p class="body-text">Chaque menu est adapté à vos envies, votre budget et vos contraintes alimentaires (végétarien, sans gluten, halal…).</p>
+        <div class="pills">
+          <span>Produits frais</span><span>Menus personnalisés</span><span>Livraison possible</span><span>Devis sous 24 h</span><span>100 % fait maison</span>
+        </div>
+        <a href="#devis" class="link-arrow">Parler de mon événement <i>→</i></a>
       </div>
-      <div class="story-card reveal">
+      <div class="panel reveal">
         <img src="images/logo.png" alt="Logo PinouMiam – Traiteur gourmand, cuisine maison">
+        <span class="live"><b></b>Cuisine maison · Instagram @pinou.miam</span>
       </div>
-    </div>
-  </section>
-
-  <!-- ÉTAPES -->
-  <section class="section steps-section">
-    <div class="container">
-      <p class="kicker center">Simple et rapide</p>
-      <h2 class="center">Comment commander ?</h2>
-      <ol class="steps">
-        <li class="reveal"><span class="step-n">1</span><h3>Vous me contactez</h3><p>Par Instagram ou via le formulaire : date, nombre d'invités, envies.</p></li>
-        <li class="reveal"><span class="step-n">2</span><h3>Je vous envoie un devis</h3><p>Un menu et un prix clairs, adaptés à votre événement.</p></li>
-        <li class="reveal"><span class="step-n">3</span><h3>Je cuisine pour vous</h3><p>Retrait ou livraison le jour J, vous n'avez plus qu'à vous régaler.</p></li>
-      </ol>
     </div>
   </section>
 
   <!-- TARIFS -->
-  <section class="section alt" id="tarifs">
+  <section class="section soft-bg" id="tarifs">
     <div class="container">
-      <p class="kicker center">Nos formules</p>
-      <h2 class="center">Menus &amp; Tarifs</h2>
-      <p class="center sub">Prix indicatifs par personne. Le tarif final dépend du nombre d'invités et des options choisies.</p>
+      <div class="head-split">
+        <div>
+          <p class="eyebrow">Nos formules</p>
+          <h2>Menus <span class="soft">&amp; tarifs.</span></h2>
+        </div>
+        <p class="head-text">Prix indicatifs par personne. Le tarif final dépend du nombre d'invités et des options choisies.</p>
+      </div>
 
       <div class="cards">
         <article class="card reveal">
@@ -115,7 +154,7 @@
             <li>2 pièces sucrées</li>
             <li>Verrines &amp; mini-burgers</li>
           </ul>
-          <a href="#contact" class="btn btn-outline btn-block">Demander un devis</a>
+          <a href="#devis" class="btn btn-line btn-block">Demander un devis <span class="arr">→</span></a>
         </article>
         <article class="card featured reveal">
           <span class="badge">Le plus demandé</span>
@@ -126,7 +165,7 @@
             <li>Pain et boissons non alcoolisées</li>
             <li>Livraison incluse (20 km)</li>
           </ul>
-          <a href="#contact" class="btn btn-block">Demander un devis</a>
+          <a href="#devis" class="btn btn-light btn-block">Demander un devis <span class="arr">→</span></a>
         </article>
         <article class="card reveal">
           <h3>Formule Prestige</h3>
@@ -136,54 +175,64 @@
             <li>Service à table</li>
             <li>Vaisselle et décoration</li>
           </ul>
-          <a href="#contact" class="btn btn-outline btn-block">Demander un devis</a>
+          <a href="#devis" class="btn btn-line btn-block">Demander un devis <span class="arr">→</span></a>
         </article>
       </div>
 
-      <h3 class="center extras-title">Options</h3>
+      <h3 class="extras-title">Options</h3>
       <ul class="extras reveal">
         <li><span>Plateau repas (entreprise)</span><strong>12 €</strong></li>
         <li><span>Buffet froid (dès 20 pers.)</span><strong>22 €</strong></li>
         <li><span>Gâteau / pièce montée</span><strong>sur devis</strong></li>
         <li><span>Location vaisselle</span><strong>3 € / pers.</strong></li>
       </ul>
-      <p class="note center">* Tarifs fictifs, à remplacer par les vrais prix.</p>
+      <p class="note">* Tarifs fictifs, à remplacer par les vrais prix.</p>
     </div>
   </section>
 
   <!-- ESTIMATEUR -->
-  <section class="section steps-section" id="estimation">
+  <section class="section" id="estimation">
     <div class="container">
-      <p class="kicker center">Faites votre estimation</p>
-      <h2 class="center">Combien ça coûte ?</h2>
-      <p class="center sub">Choisissez une formule et le nombre d'invités : vous voyez tout de suite un ordre de prix.</p>
-      <div class="estimator reveal" id="estimator">
-        <div class="est-block">
-          <span class="est-label">1. Votre formule</span>
-          <div class="est-choices" id="estChoices" role="radiogroup" aria-label="Formule"></div>
+      <div class="head-split">
+        <div>
+          <p class="eyebrow">Faites votre estimation</p>
+          <h2>Combien <span class="soft">ça coûte ?</span></h2>
         </div>
-        <div class="est-block">
-          <label class="est-label" for="estGuests">2. Nombre d'invités : <strong id="estGuestsVal">30</strong></label>
-          <input type="range" id="estGuests" min="5" max="200" step="1" value="30">
-          <div class="est-scale"><span>5</span><span>100</span><span>200</span></div>
+        <p class="head-text">Choisissez une formule et le nombre d'invités : vous voyez tout de suite un ordre de prix.</p>
+      </div>
+      <div class="estimator reveal" id="estimator">
+        <div class="est-left">
+          <div class="est-block">
+            <span class="est-label">1. Votre formule</span>
+            <div class="est-choices" id="estChoices" role="radiogroup" aria-label="Formule"></div>
+          </div>
+          <div class="est-block">
+            <label class="est-label" for="estGuests">2. Nombre d'invités : <strong id="estGuestsVal">30</strong></label>
+            <input type="range" id="estGuests" min="5" max="200" step="1" value="30">
+            <div class="est-scale"><span>5</span><span>100</span><span>200</span></div>
+          </div>
         </div>
         <div class="est-result" aria-live="polite">
           <small>Estimation indicative</small>
           <strong id="estTotal">0 €</strong>
           <span id="estDetail"></span>
+          <button type="button" class="btn btn-light" id="estUse">Demander ce devis <span class="arr">→</span></button>
         </div>
-        <button type="button" class="btn" id="estUse">Demander ce devis</button>
       </div>
-      <p class="note center">* Estimation non contractuelle : le devis final dépend du menu et des options.</p>
+      <p class="note">* Estimation non contractuelle : le devis final dépend du menu et des options.</p>
     </div>
   </section>
 
   <!-- GALERIE -->
-  <section class="section" id="galerie">
+  <section class="section soft-bg" id="galerie">
     <div class="container">
-      <p class="kicker center">En images</p>
-      <h2 class="center">Galerie</h2>
-      <p class="center sub">Un aperçu de mes réalisations. Retrouvez-en plus sur <a href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">Instagram</a>.</p>
+      <div class="head-split">
+        <div>
+          <p class="eyebrow">En images</p>
+          <h2>Un aperçu <span class="soft">de mes réalisations.</span></h2>
+        </div>
+        <p class="head-text">Retrouvez-en plus sur <a href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">Instagram</a>.</p>
+      </div>
       <!-- Pour mettre une vraie photo : remplacer le contenu d'une tuile par
            <img src="images/ma-photo.jpg" alt="Description"> + <figcaption>Légende</figcaption> -->
       <div class="gallery">
@@ -198,74 +247,89 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="section alt" id="contact">
-    <div class="container two-col top">
-      <div class="reveal">
-        <p class="kicker">Parlons de votre événement</p>
-        <h2>Demandez votre devis</h2>
-        <p>Dites-moi quelques mots sur votre événement, je vous réponds rapidement.</p>
-        <a class="insta-btn" href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">📸 @pinou.miam <small>Commandes &amp; devis en message privé</small></a>
-        <ul class="contact-list">
-          <li>📞 <a href="tel:+33600000000">06 00 00 00 00</a></li>
-          <li>✉️ <a href="mailto:contact@exemple.fr">contact@exemple.fr</a></li>
-          <li>📍 Zone de livraison : Ville et environs (30 km)</li>
-          <li>🕘 Lun – Sam, 9h – 19h</li>
-        </ul>
-      </div>
-      <form id="devis" class="form reveal" novalidate>
-        <label>Nom
-          <input type="text" name="nom" required autocomplete="name">
-        </label>
-        <label>Email
-          <input type="email" name="email" required autocomplete="email">
-        </label>
-        <label>Téléphone
-          <input type="tel" name="tel" autocomplete="tel">
-        </label>
-        <div class="row">
-          <label>Date de l'événement
-            <input type="date" name="date">
-          </label>
-          <label>Nombre d'invités
-            <input type="number" name="invites" min="1">
-          </label>
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="cta-panel reveal">
+        <div class="cta-text">
+          <p class="eyebrow">Un événement en tête ?</p>
+          <h2>Construisons ensemble <span class="grad">votre prochain repas.</span></h2>
+          <a class="btn" href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">Écrire sur Instagram <span class="arr">→</span></a>
+          <p class="cta-mail">@pinou.miam · commandes &amp; devis en message privé</p>
         </div>
-        <label>Type d'événement
-          <select name="type">
-            <option>Mariage</option>
-            <option>Anniversaire</option>
-            <option>Baptême / Communion</option>
-            <option>Repas d'entreprise</option>
-            <option>Autre</option>
-          </select>
-        </label>
-        <label>Message
-          <textarea name="message" rows="4"></textarea>
-        </label>
-        <button type="submit" class="btn">Envoyer la demande</button>
-        <p class="form-status" role="status"></p>
-      </form>
+        <div class="cta-orb" aria-hidden="true"><span></span></div>
+      </div>
+
+      <div class="contact-grid" id="devis">
+        <div class="info-card reveal">
+          <p class="eyebrow">Contact</p>
+          <h3>Parlons de votre événement</h3>
+          <ul class="contact-list">
+            <li><span class="ci">📞</span><a href="tel:+33600000000">06 00 00 00 00</a></li>
+            <li><span class="ci">✉️</span><a href="mailto:contact@exemple.fr">contact@exemple.fr</a></li>
+            <li><span class="ci">📸</span><a href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">@pinou.miam</a></li>
+            <li><span class="ci">📍</span>Zone de livraison : Ville et environs (30 km)</li>
+            <li><span class="ci">🕘</span>Lun – Sam, 9h – 19h</li>
+          </ul>
+        </div>
+        <form id="devis-form" class="form reveal" novalidate>
+          <label>Nom
+            <input type="text" name="nom" required autocomplete="name">
+          </label>
+          <label>Email
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <label>Téléphone
+            <input type="tel" name="tel" autocomplete="tel">
+          </label>
+          <div class="row">
+            <label>Date de l'événement
+              <input type="date" name="date">
+            </label>
+            <label>Nombre d'invités
+              <input type="number" name="invites" min="1">
+            </label>
+          </div>
+          <label>Type d'événement
+            <select name="type">
+              <option>Mariage</option>
+              <option>Anniversaire</option>
+              <option>Baptême / Communion</option>
+              <option>Repas d'entreprise</option>
+              <option>Autre</option>
+            </select>
+          </label>
+          <label>Message
+            <textarea name="message" rows="4"></textarea>
+          </label>
+          <button type="submit" class="btn">Envoyer la demande <span class="arr">→</span></button>
+          <p class="form-status" role="status"></p>
+        </form>
+      </div>
     </div>
   </section>
 </main>
 
 <footer class="footer">
   <div class="container footer-grid">
-    <div>
-      <a href="#accueil" class="logo footer-logo">Pinou<span>Miam</span></a>
-      <p>Traiteur gourmand · Cuisine maison</p>
+    <div class="f-brand">
+      <a href="#accueil" class="logo">Pinou<span>Miam</span></a>
+      <p>Traiteur gourmand · Cuisine maison. Du goût, du partage et du plaisir.</p>
     </div>
-    <nav class="footer-links" aria-label="Pied de page">
-      <a href="#presentation">Présentation</a>
+    <nav class="f-col" aria-label="Navigation">
+      <h4>Navigation</h4>
+      <a href="#prestations">Prestations</a>
       <a href="#tarifs">Menus &amp; Tarifs</a>
       <a href="#galerie">Galerie</a>
       <a href="#contact">Contact</a>
     </nav>
-    <div>
-      <a href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">📸 @pinou.miam</a>
-      <p class="copy">© <span id="year"></span> PinouMiam. Tous droits réservés.</p>
+    <div class="f-col">
+      <h4>Contact</h4>
+      <a href="#devis">Demander un devis</a>
+      <a href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">Instagram @pinou.miam</a>
+      <a href="mailto:contact@exemple.fr">contact@exemple.fr</a>
     </div>
   </div>
+  <div class="container f-bottom">© <span id="year"></span> PinouMiam. Tous droits réservés.</div>
 </footer>
 
 <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo agrandie">

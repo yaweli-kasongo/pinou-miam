@@ -125,10 +125,10 @@ if (formules.length && estChoices) {
 
   document.getElementById('estUse').addEventListener('click', () => {
     const f = formules[estIndex], n = +estGuests.value;
-    const form = document.getElementById('devis');
+    const form = document.getElementById('devis-form');
     form.invites.value = n;
     form.message.value = `Bonjour, je souhaite un devis pour la formule ${f.name} pour ${n} personnes (estimation : ${euro(f.price * n)}).`;
-    document.getElementById('contact').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    document.getElementById('devis').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
   });
 }
 
@@ -191,7 +191,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // et colle son URL ici (ex: "https://formspree.io/f/xxxxxxx").
 const FORM_ENDPOINT = '';
 
-const form = document.getElementById('devis');
+const form = document.getElementById('devis-form');
 const status = form.querySelector('.form-status');
 
 form.addEventListener('submit', async (e) => {
