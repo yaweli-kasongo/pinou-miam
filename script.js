@@ -36,6 +36,7 @@ function onScroll() {
   const max = document.documentElement.scrollHeight - innerHeight;
   progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
   header.classList.toggle('scrolled', scrollY > 20);
+  header.classList.toggle('over-hero', scrollY < document.getElementById('accueil').offsetHeight - 80);
   toTop.hidden = scrollY < 600;
 }
 addEventListener('scroll', onScroll, { passive: true });
@@ -165,7 +166,7 @@ addEventListener('keydown', e => {
 const art = document.getElementById('heroArt');
 if (art && !reduceMotion) {
   let tx = 0, ty = 0, cx = 0, cy = 0, lastMove = 0;
-  const hero = document.getElementById('accueil');
+  const hero = art.closest('section');
   const aim = (x, y) => {
     const r = art.getBoundingClientRect();
     tx = Math.max(-1, Math.min(1, (x - (r.left + r.width / 2)) / (innerWidth / 2)));
@@ -181,6 +182,38 @@ if (art && !reduceMotion) {
     art.style.setProperty('--my', cy.toFixed(3));
     requestAnimationFrame(loop);
   })(performance.now());
+}
+
+// Vidéo du hero : une seule lecture à l'écran, pause possible, économie de données respectée
+const vBg = document.querySelector('.hv-bg');
+const vMain = document.querySelector('.hv-main');
+const vToggle = document.getElementById('vidToggle');
+if (vBg && vMain && vToggle) {
+  const narrow = window.matchMedia('(max-width: 860px), (orientation: portrait)');
+  const saveData = navigator.connection && navigator.connection.saveData;
+  let userPaused = reduceMotion || !!saveData;
+  const active = () => (narrow.matches ? [vBg] : [vBg, vMain]);
+  const inactive = () => (narrow.matches ? [vMain] : []);
+  function sync() {
+    inactive().forEach(v => v.pause());
+    active().forEach(v => {
+      if (userPaused) { v.pause(); if (v.readyState < 2) v.currentTime = 0.1; }
+      else { const p = v.play(); if (p) p.catch(() => {}); }
+    });
+    vToggle.textContent = userPaused ? '▶' : '❚❚';
+    vToggle.setAttribute('aria-pressed', userPaused);
+    vToggle.setAttribute('aria-label', userPaused ? 'Lancer la vidéo' : 'Mettre la vidéo en pause');
+  }
+  vToggle.addEventListener('click', () => { userPaused = !userPaused; sync(); });
+  narrow.addEventListener('change', sync);
+  // met en pause quand le hero n'est plus visible (économise la batterie)
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([en]) => {
+      if (userPaused) return;
+      active().forEach(v => { if (en.isIntersecting) { const p = v.play(); if (p) p.catch(() => {}); } else v.pause(); });
+    }, { threshold: 0.05 }).observe(document.getElementById('accueil'));
+  }
+  sync();
 }
 
 // Année du footer

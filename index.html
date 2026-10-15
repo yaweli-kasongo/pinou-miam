@@ -34,30 +34,26 @@
 <main>
   <!-- HERO -->
   <section class="hero" id="accueil">
+    <div class="hero-media" aria-hidden="true">
+      <video class="hv-bg" src="images/hero.mp4" autoplay muted loop playsinline preload="auto" tabindex="-1"></video>
+    </div>
+    <div class="hero-veil" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div class="hero-text">
         <p class="eyebrow">Traiteur gourmand · Cuisine maison</p>
-        <h1>Du fait maison, <span class="grad">avec amour</span>, pour vos plus beaux moments.</h1>
+        <h1>Du fait maison, <span class="glow">avec amour</span>, pour vos plus beaux moments.</h1>
         <p class="lead">Pour votre <span class="rotator" data-words="mariage,anniversaire,baptême,repas d'entreprise,fête de famille">mariage</span> : du goût, du partage et du plaisir, préparés pour vous.</p>
         <div class="hero-actions">
-          <a href="#devis" class="btn">Demander un devis <span class="arr">→</span></a>
+          <a href="#devis" class="btn btn-light">Demander un devis <span class="arr">→</span></a>
           <a href="#tarifs" class="link-arrow">Découvrir nos formules <i>→</i></a>
         </div>
       </div>
-      <div class="hero-art" id="heroArt" aria-hidden="true">
-        <div class="blob" style="--d:10"></div>
-        <div class="ring" style="--d:22"></div>
-        <span class="orb o3" style="--d:34"></span>
-        <div class="card3d" id="card3d"><img src="images/logo.png" alt=""></div>
-        <span class="orb o1" style="--d:62"></span>
-        <span class="orb o2" style="--d:48"></span>
-        <span class="float-ico f1" style="--d:56">🥐</span>
-        <span class="float-ico f2" style="--d:44">🍓</span>
-        <span class="float-ico f3" style="--d:60">🥂</span>
-        <span class="float-ico f4" style="--d:40">🧁</span>
-        <span class="art-badge"><b></b>Cuisine maison · @pinou.miam</span>
+      <div class="hero-frame">
+        <video class="hv-main" src="images/hero.mp4" autoplay muted loop playsinline preload="auto" aria-label="Vidéo : la cuisine PinouMiam"></video>
       </div>
     </div>
+    <button type="button" class="vid-toggle" id="vidToggle" aria-label="Mettre la vidéo en pause" aria-pressed="false">❚❚</button>
+    <a href="#prestations" class="scroll-cue" aria-label="Découvrir la suite"><span>Découvrir</span><i></i></a>
   </section>
 
   <!-- PRESTATIONS -->
@@ -127,8 +123,19 @@
         </div>
         <a href="#devis" class="link-arrow">Parler de mon événement <i>→</i></a>
       </div>
-      <div class="panel reveal">
-        <img src="images/logo.png" alt="Logo PinouMiam – Traiteur gourmand, cuisine maison">
+      <div class="panel reveal" role="img" aria-label="Logo PinouMiam – Traiteur gourmand, cuisine maison">
+        <div class="hero-art" id="heroArt" aria-hidden="true">
+          <div class="blob" style="--d:10"></div>
+          <div class="ring" style="--d:22"></div>
+          <span class="orb o3" style="--d:34"></span>
+          <div class="card3d" id="card3d"><img src="images/logo.png" alt=""></div>
+          <span class="orb o1" style="--d:62"></span>
+          <span class="orb o2" style="--d:48"></span>
+          <span class="float-ico f1" style="--d:56">🥐</span>
+          <span class="float-ico f2" style="--d:44">🍓</span>
+          <span class="float-ico f3" style="--d:60">🥂</span>
+          <span class="float-ico f4" style="--d:40">🧁</span>
+        </div>
         <span class="live"><b></b>Cuisine maison · Instagram @pinou.miam</span>
       </div>
     </div>
