@@ -191,13 +191,19 @@ const vToggle = document.getElementById('vidToggle');
 if (vBg && vMain && vToggle) {
   const narrow = window.matchMedia('(max-width: 860px), (orientation: portrait)');
   const saveData = navigator.connection && navigator.connection.saveData;
+  // La vidéo fond au noir à la fin (logo du monteur) : on boucle uniquement sur la partie utile
+  const LOOP_START = 1, LOOP_END = 57.5;
+  [vBg, vMain].forEach(v => {
+    v.addEventListener('loadedmetadata', () => { if (v.currentTime < LOOP_START) v.currentTime = LOOP_START; });
+    v.addEventListener('timeupdate', () => { if (v.currentTime >= LOOP_END) v.currentTime = LOOP_START; });
+  });
   let userPaused = reduceMotion || !!saveData;
   const active = () => (narrow.matches ? [vBg] : [vBg, vMain]);
   const inactive = () => (narrow.matches ? [vMain] : []);
   function sync() {
     inactive().forEach(v => v.pause());
     active().forEach(v => {
-      if (userPaused) { v.pause(); if (v.readyState < 2) v.currentTime = 0.1; }
+      if (userPaused) { v.pause(); if (v.readyState < 2) v.currentTime = LOOP_START; }
       else { const p = v.play(); if (p) p.catch(() => {}); }
     });
     vToggle.textContent = userPaused ? '▶' : '❚❚';
