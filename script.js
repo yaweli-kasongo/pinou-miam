@@ -13,6 +13,19 @@ menu.querySelectorAll('a').forEach(a =>
   })
 );
 
+// Apparition douce des blocs au défilement
+const reveals = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+} else {
+  reveals.forEach(el => el.classList.add('visible'));
+}
+
 // Année du footer
 document.getElementById('year').textContent = new Date().getFullYear();
 

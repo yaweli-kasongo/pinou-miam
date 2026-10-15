@@ -1,18 +1,21 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PinouMiam – Traiteur gourmand, cuisine maison</title>
-  <meta name="description" content="Traiteur pour mariages, anniversaires et événements d'entreprise. Cuisine maison, produits frais, devis gratuit.">
+  <meta name="description" content="PinouMiam, traiteur gourmand : du fait maison avec amour pour vos mariages, anniversaires et repas d'entreprise. Commandes et devis sur Instagram.">
+  <meta name="theme-color" content="#5f7a62">
+  <link rel="icon" href="images/logo.png">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
 <header class="header">
   <div class="container nav">
     <a href="#accueil" class="logo">Pinou<span>Miam</span></a>
-    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">☰</button>
     <nav class="menu" id="menu">
       <a href="#presentation">Présentation</a>
       <a href="#tarifs">Menus &amp; Tarifs</a>
@@ -23,24 +26,43 @@
 </header>
 
 <main>
+  <!-- HERO -->
   <section class="hero" id="accueil">
-    <div class="container">
-      <p class="eyebrow">Traiteur gourmand · Cuisine maison</p>
-      <h1>Du fait maison, avec amour, pour vos plus beaux moments</h1>
-      <p class="lead">Mariages, anniversaires, baptêmes, repas d'entreprise : du goût, du partage et du plaisir.</p>
-      <div class="hero-actions">
-        <a href="#tarifs" class="btn">Voir les tarifs</a>
-        <a href="#contact" class="btn btn-outline">Demander un devis</a>
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">Traiteur gourmand · Cuisine maison</p>
+        <h1>Du fait maison, <em>avec amour</em>, pour vos plus beaux moments</h1>
+        <p class="lead">Mariages, anniversaires, baptêmes, repas d'entreprise : du goût, du partage et du plaisir, préparés pour vous.</p>
+        <div class="hero-actions">
+          <a href="#tarifs" class="btn">Voir les tarifs</a>
+          <a href="#contact" class="btn btn-outline">Demander un devis</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="blob"></div>
+        <img src="images/logo.png" alt="">
       </div>
     </div>
   </section>
 
+  <!-- ATOUTS -->
+  <section class="perks">
+    <div class="container perks-grid">
+      <div class="perk"><span class="perk-ico">🍳</span><strong>100 % fait maison</strong><small>Rien d'industriel</small></div>
+      <div class="perk"><span class="perk-ico">🥬</span><strong>Produits frais</strong><small>De saison, bien choisis</small></div>
+      <div class="perk"><span class="perk-ico">🎯</span><strong>Sur mesure</strong><small>Selon vos goûts et budget</small></div>
+      <div class="perk"><span class="perk-ico">⚡</span><strong>Devis rapide</strong><small>Réponse sous 24 h</small></div>
+    </div>
+  </section>
+
+  <!-- PRÉSENTATION -->
   <section class="section" id="presentation">
     <div class="container two-col">
-      <div>
+      <div class="reveal">
+        <p class="kicker">Notre histoire</p>
         <h2>PinouMiam, c'est quoi ?</h2>
-        <p>Passionnée de cuisine depuis toujours, je prépare des repas pour vos événements depuis plus de 15 ans. Mon objectif : que vos invités se souviennent autant de la convivialité que des plats.</p>
-        <p>Chaque menu est adapté à vos goûts, votre budget et vos contraintes alimentaires (végétarien, sans gluten, halal…).</p>
+        <p>Une cuisine généreuse, préparée avec amour et sans chichis. Mon objectif : que vos invités se souviennent autant de la convivialité que des plats.</p>
+        <p>Chaque menu est adapté à vos envies, votre budget et vos contraintes alimentaires (végétarien, sans gluten, halal…).</p>
         <ul class="checks">
           <li>Produits frais et de saison</li>
           <li>Menus personnalisés</li>
@@ -48,17 +70,34 @@
           <li>Devis gratuit sous 24 h</li>
         </ul>
       </div>
-      <div class="logo-card"><img src="images/logo.png" alt="Logo PinouMiam – Traiteur gourmand, cuisine maison"></div>
+      <div class="story-card reveal">
+        <img src="images/logo.png" alt="Logo PinouMiam – Traiteur gourmand, cuisine maison">
+      </div>
     </div>
   </section>
 
+  <!-- ÉTAPES -->
+  <section class="section steps-section">
+    <div class="container">
+      <p class="kicker center">Simple et rapide</p>
+      <h2 class="center">Comment commander ?</h2>
+      <ol class="steps">
+        <li class="reveal"><span class="step-n">1</span><h3>Vous me contactez</h3><p>Par Instagram ou via le formulaire : date, nombre d'invités, envies.</p></li>
+        <li class="reveal"><span class="step-n">2</span><h3>Je vous envoie un devis</h3><p>Un menu et un prix clairs, adaptés à votre événement.</p></li>
+        <li class="reveal"><span class="step-n">3</span><h3>Je cuisine pour vous</h3><p>Retrait ou livraison le jour J, vous n'avez plus qu'à vous régaler.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- TARIFS -->
   <section class="section alt" id="tarifs">
     <div class="container">
+      <p class="kicker center">Nos formules</p>
       <h2 class="center">Menus &amp; Tarifs</h2>
       <p class="center sub">Prix indicatifs par personne. Le tarif final dépend du nombre d'invités et des options choisies.</p>
 
       <div class="cards">
-        <article class="card">
+        <article class="card reveal">
           <h3>Formule Apéritif</h3>
           <p class="price">À partir de <strong>15 €</strong><span>/ pers.</span></p>
           <ul>
@@ -66,8 +105,9 @@
             <li>2 pièces sucrées</li>
             <li>Verrines &amp; mini-burgers</li>
           </ul>
+          <a href="#contact" class="btn btn-outline btn-block">Demander un devis</a>
         </article>
-        <article class="card featured">
+        <article class="card featured reveal">
           <span class="badge">Le plus demandé</span>
           <h3>Formule Repas</h3>
           <p class="price">À partir de <strong>32 €</strong><span>/ pers.</span></p>
@@ -76,8 +116,9 @@
             <li>Pain et boissons non alcoolisées</li>
             <li>Livraison incluse (20 km)</li>
           </ul>
+          <a href="#contact" class="btn btn-block">Demander un devis</a>
         </article>
-        <article class="card">
+        <article class="card reveal">
           <h3>Formule Prestige</h3>
           <p class="price">À partir de <strong>55 €</strong><span>/ pers.</span></p>
           <ul>
@@ -85,11 +126,12 @@
             <li>Service à table</li>
             <li>Vaisselle et décoration</li>
           </ul>
+          <a href="#contact" class="btn btn-outline btn-block">Demander un devis</a>
         </article>
       </div>
 
       <h3 class="center extras-title">Options</h3>
-      <ul class="extras">
+      <ul class="extras reveal">
         <li><span>Plateau repas (entreprise)</span><strong>12 €</strong></li>
         <li><span>Buffet froid (dès 20 pers.)</span><strong>22 €</strong></li>
         <li><span>Gâteau / pièce montée</span><strong>sur devis</strong></li>
@@ -99,36 +141,41 @@
     </div>
   </section>
 
+  <!-- GALERIE -->
   <section class="section" id="galerie">
     <div class="container">
+      <p class="kicker center">En images</p>
       <h2 class="center">Galerie</h2>
-      <p class="center sub">Un aperçu de mes réalisations.</p>
+      <p class="center sub">Un aperçu de mes réalisations. Retrouvez-en plus sur <a href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">Instagram</a>.</p>
+      <!-- Pour mettre une vraie photo : remplacer le contenu d'une tuile par
+           <img src="images/ma-photo.jpg" alt="Description"> + <figcaption>Légende</figcaption> -->
       <div class="gallery">
-        <div class="tile t1">🍤</div>
-        <div class="tile t2">🥗</div>
-        <div class="tile t3">🍰</div>
-        <div class="tile t4">🍲</div>
-        <div class="tile t5">🥂</div>
-        <div class="tile t6">🍽️</div>
+        <figure class="tile t1 reveal"><span class="tile-ico">🍤</span><figcaption>Apéritifs</figcaption></figure>
+        <figure class="tile t2 reveal"><span class="tile-ico">🥗</span><figcaption>Salades &amp; entrées</figcaption></figure>
+        <figure class="tile t3 reveal"><span class="tile-ico">🍰</span><figcaption>Pâtisseries</figcaption></figure>
+        <figure class="tile t4 reveal"><span class="tile-ico">🍲</span><figcaption>Plats mijotés</figcaption></figure>
+        <figure class="tile t5 reveal"><span class="tile-ico">🥂</span><figcaption>Cocktails</figcaption></figure>
+        <figure class="tile t6 reveal"><span class="tile-ico">🍽️</span><figcaption>Buffets</figcaption></figure>
       </div>
-      <p class="note center">Remplacer ces vignettes par de vraies photos dans le dossier <code>images/</code>.</p>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section class="section alt" id="contact">
-    <div class="container two-col">
-      <div>
+    <div class="container two-col top">
+      <div class="reveal">
+        <p class="kicker">Parlons de votre événement</p>
         <h2>Demandez votre devis</h2>
         <p>Dites-moi quelques mots sur votre événement, je vous réponds rapidement.</p>
+        <a class="insta-btn" href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">📸 @pinou.miam <small>Commandes &amp; devis en message privé</small></a>
         <ul class="contact-list">
-          <li>📸 <a href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">@pinou.miam sur Instagram</a> (commandes &amp; devis en message privé)</li>
-        <li>📞 <a href="tel:+33600000000">06 00 00 00 00</a></li>
+          <li>📞 <a href="tel:+33600000000">06 00 00 00 00</a></li>
           <li>✉️ <a href="mailto:contact@exemple.fr">contact@exemple.fr</a></li>
           <li>📍 Zone de livraison : Ville et environs (30 km)</li>
           <li>🕘 Lun – Sam, 9h – 19h</li>
         </ul>
       </div>
-      <form id="devis" class="form" novalidate>
+      <form id="devis" class="form reveal" novalidate>
         <label>Nom
           <input type="text" name="nom" required autocomplete="name">
         </label>
@@ -166,12 +213,24 @@
 </main>
 
 <footer class="footer">
-  <div class="container">
-    <p>© <span id="year"></span> PinouMiam – Traiteur gourmand. Tous droits réservés. · <a href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">Instagram</a></p>
+  <div class="container footer-grid">
+    <div>
+      <a href="#accueil" class="logo footer-logo">Pinou<span>Miam</span></a>
+      <p>Traiteur gourmand · Cuisine maison</p>
+    </div>
+    <nav class="footer-links" aria-label="Pied de page">
+      <a href="#presentation">Présentation</a>
+      <a href="#tarifs">Menus &amp; Tarifs</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div>
+      <a href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">📸 @pinou.miam</a>
+      <p class="copy">© <span id="year"></span> PinouMiam. Tous droits réservés.</p>
+    </div>
   </div>
 </footer>
 
 <script src="script.js"></script>
 </body>
 </html>
-
