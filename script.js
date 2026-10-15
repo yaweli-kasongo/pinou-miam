@@ -191,10 +191,12 @@ const vToggle = document.getElementById('vidToggle');
 if (vBg && vMain && vToggle) {
   const narrow = window.matchMedia('(max-width: 860px), (orientation: portrait)');
   const saveData = navigator.connection && navigator.connection.saveData;
-  // La vidéo fond au noir à la fin (logo du monteur) : on boucle uniquement sur la partie utile
-  const LOOP_START = 1, LOOP_END = 57.5;
+  // La vidéo s'assombrit en fin de séquence puis affiche le logo du monteur (à partir de ~60,0 s).
+  // On garde le début et le fondu d'origine, mais on reboucle juste avant l'apparition du logo.
+  const LOOP_START = 0, LOOP_END = 59.95;
   [vBg, vMain].forEach(v => {
-    v.addEventListener('loadedmetadata', () => { if (v.currentTime < LOOP_START) v.currentTime = LOOP_START; });
+    const guard = () => { if (v.currentTime >= LOOP_END) v.currentTime = LOOP_START; requestAnimationFrame(guard); };
+    requestAnimationFrame(guard);
     v.addEventListener('timeupdate', () => { if (v.currentTime >= LOOP_END) v.currentTime = LOOP_START; });
   });
   let userPaused = reduceMotion || !!saveData;
