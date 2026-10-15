@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<div class="progress" aria-hidden="true"></div>
+
 <header class="header">
   <div class="container nav">
     <a href="#accueil" class="logo">Pinou<span>Miam</span></a>
@@ -32,15 +34,23 @@
       <div class="hero-text">
         <p class="eyebrow">Traiteur gourmand · Cuisine maison</p>
         <h1>Du fait maison, <em>avec amour</em>, pour vos plus beaux moments</h1>
-        <p class="lead">Mariages, anniversaires, baptêmes, repas d'entreprise : du goût, du partage et du plaisir, préparés pour vous.</p>
+        <p class="lead">Pour votre <span class="rotator" data-words="mariage,anniversaire,baptême,repas d'entreprise,fête de famille">mariage</span> : du goût, du partage et du plaisir, préparés pour vous.</p>
         <div class="hero-actions">
           <a href="#tarifs" class="btn">Voir les tarifs</a>
           <a href="#contact" class="btn btn-outline">Demander un devis</a>
         </div>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="blob"></div>
-        <img src="images/logo.png" alt="">
+      <div class="hero-art" id="heroArt" aria-hidden="true">
+        <div class="blob" style="--d:10"></div>
+        <div class="ring" style="--d:22"></div>
+        <span class="orb o3" style="--d:34"></span>
+        <div class="card3d" id="card3d"><img src="images/logo.png" alt=""></div>
+        <span class="orb o1" style="--d:62"></span>
+        <span class="orb o2" style="--d:48"></span>
+        <span class="float-ico f1" style="--d:56">🥐</span>
+        <span class="float-ico f2" style="--d:44">🍓</span>
+        <span class="float-ico f3" style="--d:60">🥂</span>
+        <span class="float-ico f4" style="--d:40">🧁</span>
       </div>
     </div>
   </section>
@@ -141,6 +151,33 @@
     </div>
   </section>
 
+  <!-- ESTIMATEUR -->
+  <section class="section steps-section" id="estimation">
+    <div class="container">
+      <p class="kicker center">Faites votre estimation</p>
+      <h2 class="center">Combien ça coûte ?</h2>
+      <p class="center sub">Choisissez une formule et le nombre d'invités : vous voyez tout de suite un ordre de prix.</p>
+      <div class="estimator reveal" id="estimator">
+        <div class="est-block">
+          <span class="est-label">1. Votre formule</span>
+          <div class="est-choices" id="estChoices" role="radiogroup" aria-label="Formule"></div>
+        </div>
+        <div class="est-block">
+          <label class="est-label" for="estGuests">2. Nombre d'invités : <strong id="estGuestsVal">30</strong></label>
+          <input type="range" id="estGuests" min="5" max="200" step="1" value="30">
+          <div class="est-scale"><span>5</span><span>100</span><span>200</span></div>
+        </div>
+        <div class="est-result" aria-live="polite">
+          <small>Estimation indicative</small>
+          <strong id="estTotal">0 €</strong>
+          <span id="estDetail"></span>
+        </div>
+        <button type="button" class="btn" id="estUse">Demander ce devis</button>
+      </div>
+      <p class="note center">* Estimation non contractuelle : le devis final dépend du menu et des options.</p>
+    </div>
+  </section>
+
   <!-- GALERIE -->
   <section class="section" id="galerie">
     <div class="container">
@@ -230,6 +267,15 @@
     </div>
   </div>
 </footer>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo agrandie">
+  <button class="lb-close" aria-label="Fermer">✕</button>
+  <button class="lb-nav lb-prev" aria-label="Précédent">‹</button>
+  <div class="lb-content" id="lbContent"></div>
+  <button class="lb-nav lb-next" aria-label="Suivant">›</button>
+</div>
+
+<button class="to-top" aria-label="Retour en haut" hidden>↑</button>
 
 <script src="script.js"></script>
 </body>
