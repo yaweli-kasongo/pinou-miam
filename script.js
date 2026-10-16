@@ -209,10 +209,12 @@ if (formules.length && estChoices) {
 
   document.getElementById('estUse').addEventListener('click', () => {
     const f = formules[estIndex], n = +estGuests.value;
-    const form = document.getElementById('devis-form');
-    form.invites.value = n;
-    form.message.value = `Bonjour, je souhaite un devis pour la formule ${f.name} pour ${n} personnes (estimation : ${euro(f.price * n)}).`;
-    go('devis');
+    // L'adresse email est lue dans le lien « mailto: » de la page Contact (une seule à modifier)
+    const mail = document.querySelector('a[href^="mailto:"]');
+    if (!mail) { go('devis'); return; }
+    const subject = `Demande de devis – formule ${f.name}, ${n} personnes`;
+    const body = `Bonjour,\n\nJe souhaite un devis pour la formule ${f.name} pour ${n} personnes (estimation : ${euro(f.price * n)}).\n\nDate de l'événement : \nType d'événement : \n\nMerci !`;
+    location.href = `${mail.getAttribute('href').split('?')[0]}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 }
 
@@ -309,48 +311,3 @@ if (vBg && vMain && vToggle) {
 
 // Année du footer
 document.getElementById('year').textContent = new Date().getFullYear();
-
-// Formulaire de devis
-// Pour recevoir les demandes par email : crée un formulaire sur formspree.io
-// et colle son URL ici (ex: "https://formspree.io/f/xxxxxxx").
-const FORM_ENDPOINT = '';
-
-const form = document.getElementById('devis-form');
-const status = form.querySelector('.form-status');
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  status.className = 'form-status';
-
-  const nom = form.nom, email = form.email;
-  let valid = true;
-  [nom, email].forEach(f => f.classList.remove('invalid'));
-  if (!nom.value.trim()) { nom.classList.add('invalid'); valid = false; }
-  if (!/^\S+@\S+\.\S+$/.test(email.value)) { email.classList.add('invalid'); valid = false; }
-  if (!valid) {
-    status.textContent = 'Merci de renseigner un nom et un email valides.';
-    status.classList.add('err');
-    return;
-  }
-
-  if (!FORM_ENDPOINT) {
-    status.textContent = 'Formulaire en mode démo : aucun email envoyé (voir script.js).';
-    status.classList.add('err');
-    return;
-  }
-
-  try {
-    const res = await fetch(FORM_ENDPOINT, {
-      method: 'POST',
-      headers: { Accept: 'application/json' },
-      body: new FormData(form)
-    });
-    if (!res.ok) throw new Error();
-    form.reset();
-    status.textContent = 'Merci ! Votre demande a bien été envoyée, je vous réponds vite.';
-    status.classList.add('ok');
-  } catch {
-    status.textContent = "Une erreur est survenue, merci d'appeler directement.";
-    status.classList.add('err');
-  }
-});

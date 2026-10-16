@@ -235,7 +235,8 @@
           <small>Estimation indicative</small>
           <strong id="estTotal">0 €</strong>
           <span id="estDetail"></span>
-          <button type="button" class="btn btn-light" id="estUse">Demander ce devis <span class="arr">→</span></button>
+          <button type="button" class="btn btn-light" id="estUse">Demander ce devis par email <span class="arr">→</span></button>
+          <a href="#devis" class="est-alt">Ou nous appeler →</a>
         </div>
       </div>
       <p class="note">* Estimation non contractuelle : le devis final dépend du menu et des options.</p>
@@ -277,58 +278,41 @@
       <div class="cta-panel reveal">
         <div class="cta-text">
           <p class="eyebrow">Un événement en tête ?</p>
-          <h2>Construisons ensemble <span class="grad">votre prochain repas.</span></h2>
-          <a class="btn" href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">Écrire sur Instagram <span class="arr">→</span></a>
-          <p class="cta-mail">@pinou.miam · commandes &amp; devis en message privé</p>
+          <h2>Parlons-en <span class="grad">de vive voix ou par email.</span></h2>
+          <div class="cta-buttons">
+            <a class="btn" href="tel:+33600000000">📞 Appeler <span class="arr">→</span></a>
+            <a class="btn btn-line" href="mailto:contact@exemple.fr">✉️ Écrire un email <span class="arr">→</span></a>
+          </div>
+          <p class="cta-mail">Devis gratuit, réponse sous 24 h. Vous pouvez aussi nous écrire sur <a href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">Instagram @pinou.miam</a>.</p>
         </div>
         <div class="cta-orb" aria-hidden="true"><span></span></div>
       </div>
 
-      <div class="contact-grid" id="devis">
-        <div class="info-card reveal">
-          <p class="eyebrow">Contact</p>
-          <h3>Parlons de votre événement</h3>
-          <ul class="contact-list">
-            <li><span class="ci">📞</span><a href="tel:+33600000000">06 00 00 00 00</a></li>
-            <li><span class="ci">✉️</span><a href="mailto:contact@exemple.fr">contact@exemple.fr</a></li>
-            <li><span class="ci">📸</span><a href="https://www.instagram.com/pinou.miam/" target="_blank" rel="noopener">@pinou.miam</a></li>
-            <li><span class="ci">📍</span>Zone de livraison : Ville et environs (30 km)</li>
-            <li><span class="ci">🕘</span>Lun – Sam, 9h – 19h</li>
-          </ul>
+      <div class="contact-cards" id="devis">
+        <a class="ccard reveal" href="tel:+33600000000">
+          <span class="ci">📞</span>
+          <small>Téléphone</small>
+          <strong>06 00 00 00 00</strong>
+          <em>Appeler maintenant →</em>
+        </a>
+        <a class="ccard reveal" href="mailto:contact@exemple.fr">
+          <span class="ci">✉️</span>
+          <small>Email</small>
+          <strong>contact@exemple.fr</strong>
+          <em>Écrire un message →</em>
+        </a>
+        <div class="ccard reveal">
+          <span class="ci">📍</span>
+          <small>Zone de livraison</small>
+          <strong>Ville et environs</strong>
+          <em>Jusqu'à 30 km</em>
         </div>
-        <form id="devis-form" class="form reveal" novalidate>
-          <label>Nom
-            <input type="text" name="nom" required autocomplete="name">
-          </label>
-          <label>Email
-            <input type="email" name="email" required autocomplete="email">
-          </label>
-          <label>Téléphone
-            <input type="tel" name="tel" autocomplete="tel">
-          </label>
-          <div class="row">
-            <label>Date de l'événement
-              <input type="date" name="date">
-            </label>
-            <label>Nombre d'invités
-              <input type="number" name="invites" min="1">
-            </label>
-          </div>
-          <label>Type d'événement
-            <select name="type">
-              <option>Mariage</option>
-              <option>Anniversaire</option>
-              <option>Baptême / Communion</option>
-              <option>Repas d'entreprise</option>
-              <option>Autre</option>
-            </select>
-          </label>
-          <label>Message
-            <textarea name="message" rows="4"></textarea>
-          </label>
-          <button type="submit" class="btn">Envoyer la demande <span class="arr">→</span></button>
-          <p class="form-status" role="status"></p>
-        </form>
+        <div class="ccard reveal">
+          <span class="ci">🕘</span>
+          <small>Horaires</small>
+          <strong>Lun – Sam</strong>
+          <em>9h – 19h</em>
+        </div>
       </div>
     </div>
   </section>
