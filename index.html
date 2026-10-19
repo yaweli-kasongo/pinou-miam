@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="style.css">
   <script>document.documentElement.classList.add('js');</script>
 </head>
-<body class="is-home">
+<body>
 
 <div class="progress" aria-hidden="true"></div>
 
@@ -52,7 +52,7 @@
 </header>
 
 <main>
-<!-- Chaque .view est une « page » : une seule est affichée à la fois, avec une transition (voir script.js) -->
+<!-- Le site défile d'une seule pièce. Chaque .view regroupe une ou deux sections ; le menu surligne celle qui est à l'écran (voir script.js). -->
 <div class="view is-active" data-view="accueil" data-title="Accueil">
   <!-- HERO -->
   <section class="hero" id="accueil">
@@ -364,12 +364,6 @@
   </div>
   <div class="container f-bottom">© <span id="year"></span> PinouMiam. Tous droits réservés.</div>
 </footer>
-
-<!-- Rideau de transition entre les pages -->
-<div class="curtain" id="curtain" aria-hidden="true" hidden>
-  <i></i><i></i><i></i><i></i><i></i>
-  <span class="curtain-label"><small>PinouMiam</small><b id="curtainLabel"></b></span>
-</div>
 
 <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo agrandie">
   <button class="lb-close" aria-label="Fermer">✕</button>

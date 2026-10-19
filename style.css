@@ -27,7 +27,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+html { scroll-behavior: smooth; }
 body {
   font-family: var(--font); color: var(--ink); background: var(--bg); overflow-x: clip;
   line-height: 1.6; -webkit-font-smoothing: antialiased;
@@ -394,29 +394,6 @@ a.ccard em { color: var(--accent-dark); font-weight: 600; }
 .lb-close { top: 18px; right: 18px; font-size: 1.2rem; }
 .lb-prev { left: 18px; top: 50%; }
 .lb-next { right: 18px; top: 50%; }
-
-/* ---------- Pages (une seule affichée à la fois) ---------- */
-.js .view { display: none; }
-.js .view.is-active { display: block; animation: viewIn .7s var(--ease) both; }
-.view:not([data-view="accueil"]) { min-height: calc(100svh - 140px); }
-.is-home .footer { display: none; }
-.view:focus { outline: none; }
-@keyframes viewIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-
-/* Rideau de transition entre deux pages */
-.curtain { position: fixed; inset: 0; z-index: 100; display: flex; overflow: hidden; pointer-events: all; }
-.curtain[hidden] { display: none; }
-.curtain i { flex: 1 0 0; margin-right: -1px; transform: translateY(100%); will-change: transform; }
-.curtain i:nth-child(1) { background: var(--accent); }
-.curtain i:nth-child(2) { background: var(--green); }
-.curtain i:nth-child(3) { background: var(--night); }
-.curtain i:nth-child(4) { background: var(--green-dark); }
-.curtain i:nth-child(5) { background: var(--accent-dark); }
-.curtain-label { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: .6rem; text-align: center; color: #fff; opacity: 0; pointer-events: none; padding: 0 1rem; }
-.curtain-label small { font-size: .72rem; letter-spacing: .32em; text-transform: uppercase; opacity: .8; }
-.curtain-label b { font-size: clamp(2.2rem, 1rem + 6vw, 5.2rem); font-weight: 700; letter-spacing: -.05em; line-height: 1; }
-
-@media (prefers-reduced-motion: reduce) { .js .view.is-active { animation: none; } .curtain { display: none !important; } }
 
 /* ---------- Apparitions au défilement ---------- */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
