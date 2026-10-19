@@ -320,26 +320,19 @@ h3 { letter-spacing: -.02em; line-height: 1.2; }
 .est-alt:hover { text-decoration: underline; }
 
 /* ---------- Galerie ---------- */
-.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
 .tile {
-  position: relative; overflow: hidden; aspect-ratio: 4 / 3.2; border-radius: var(--r-card); display: grid; place-items: center;
-  box-shadow: var(--shadow-sm); border: 1px solid #ffffff99; cursor: zoom-in; transition: transform .5s var(--ease), box-shadow .5s;
+  position: relative; overflow: hidden; aspect-ratio: 1; border-radius: var(--r-card); background: #0b0b0b;
+  box-shadow: var(--shadow-sm); cursor: zoom-in; transition: transform .5s var(--ease), box-shadow .5s;
 }
 .tile:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
 .tile:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-.tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.tile-ico { font-size: 3.6rem; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .15)); transition: transform .5s var(--ease); }
-.tile:hover .tile-ico { transform: scale(1.12) rotate(-4deg); }
+.tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.tile:hover img { transform: scale(1.06); }
 .tile figcaption {
-  position: absolute; left: 14px; bottom: 14px; padding: .4rem .85rem; border-radius: 999px;
+  position: absolute; left: 12px; bottom: 12px; padding: .4rem .85rem; border-radius: 999px;
   background: rgba(255, 255, 255, .92); font-size: .8rem; font-weight: 600; box-shadow: var(--shadow-sm);
 }
-.t1 { background: linear-gradient(135deg, #f7d8c8, #e2987a); }
-.t2 { background: linear-gradient(135deg, #d6e5d3, #86a389); }
-.t3 { background: linear-gradient(135deg, #fadfd6, #e0876a); }
-.t4 { background: linear-gradient(135deg, #e0d3bb, #a08262); }
-.t5 { background: linear-gradient(135deg, #e5ecdf, #a3bda5); }
-.t6 { background: linear-gradient(135deg, #f5dccf, #d27a58); }
 
 /* ---------- Contact ---------- */
 .cta-panel {
@@ -394,7 +387,6 @@ a.ccard em { color: var(--accent-dark); font-weight: 600; }
 .lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(12, 18, 14, .9); display: grid; place-items: center; animation: fade .25s; }
 .lightbox[hidden] { display: none; }
 .lb-content { width: min(86vw, 640px); aspect-ratio: 1; border-radius: 22px; overflow: hidden; display: grid; place-items: center; position: relative; animation: pop .35s; }
-.lb-content .tile-ico { font-size: clamp(5rem, 22vw, 9rem); }
 .lb-content img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .lb-content figcaption { position: absolute; left: 16px; bottom: 16px; padding: .5rem 1rem; border-radius: 999px; background: #fff; font-weight: 700; }
 .lb-close, .lb-nav { position: absolute; border: 0; cursor: pointer; color: #fff; background: rgba(255, 255, 255, .15); width: 46px; height: 46px; border-radius: 50%; font-size: 1.6rem; line-height: 1; transition: background .2s; }
@@ -429,11 +421,12 @@ a.ccard em { color: var(--accent-dark); font-weight: 600; }
 /* ---------- Apparitions au défilement ---------- */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
 .js .reveal.visible { opacity: 1; transform: none; }
-.svc-grid .reveal:nth-child(2), .cards .reveal:nth-child(2), .gallery .reveal:nth-child(2) { transition-delay: .1s; }
-.svc-grid .reveal:nth-child(3), .cards .reveal:nth-child(3), .gallery .reveal:nth-child(3) { transition-delay: .2s; }
-.svc-grid .reveal:nth-child(4), .gallery .reveal:nth-child(4) { transition-delay: .06s; }
-.gallery .reveal:nth-child(5) { transition-delay: .16s; }
-.gallery .reveal:nth-child(6) { transition-delay: .26s; }
+.svc-grid .reveal:nth-child(2), .cards .reveal:nth-child(2) { transition-delay: .1s; }
+.svc-grid .reveal:nth-child(3), .cards .reveal:nth-child(3) { transition-delay: .2s; }
+.svc-grid .reveal:nth-child(4) { transition-delay: .06s; }
+.gallery .reveal:nth-child(4n+2) { transition-delay: .08s; }
+.gallery .reveal:nth-child(4n+3) { transition-delay: .16s; }
+.gallery .reveal:nth-child(4n+4) { transition-delay: .24s; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
